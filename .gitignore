@@ -1,0 +1,3 @@
+# Build or evidence exports are local-only.
+dist/
+build/

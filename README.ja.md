@@ -19,4 +19,8 @@ GPIO、NVMEM／無線の未確認境界、パーティション保全方針、�
 フォールバックしてはなりません。詳細なファイル境界は
 `devices/tplink/archer-ax23v-v1/CONSUMER_CONTRACT.md` を参照してください。
 
+x86_64 の QEMU/OVMF 専用 preview は
+`devices/generic/x86_64-qemu-uefi-preview/` が正本です。これは物理 PC、USB、
+Secure Boot、またはホストディスクへの書込みを対象にしません。
+
 詳細は [POLICY.ja.md](POLICY.ja.md) を参照してください。

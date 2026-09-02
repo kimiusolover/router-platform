@@ -23,4 +23,9 @@ x86_64 の QEMU/OVMF 専用 preview は
 `devices/generic/x86_64-qemu-uefi-preview/` が正本です。これは物理 PC、USB、
 Secure Boot、またはホストディスクへの書込みを対象にしません。
 
+公開前の最初の実行目標は [QEMU preview Milestone 0](docs/milestones/qemu-preview-m0.ja.md)
+です。`routeros-x86_64-uefi-preview.img` を QEMU/OVMF で起動し、serial console
+へログインできることだけを成果とします。AX23V の image assembly、Wi-Fi、物理 PC、
+Secure Boot、更新、Web UI はこの段階の対象外です。
+
 詳細は [POLICY.ja.md](POLICY.ja.md) を参照してください。

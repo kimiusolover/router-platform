@@ -16,12 +16,11 @@ regulatory: regulatory.yaml
 partitions: partitions.yaml
 preserve:
   - u-boot
-  - u-boot-env
-  - factory
-  - art
-  - tp-link-reserved
+  - config
+  - tplink
+  - radio
 image:
   format: null
   signing: null
-  rootfs: btrfs
+  rootfs: null
   layout: unset

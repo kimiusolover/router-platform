@@ -15,7 +15,7 @@ classes:
     write_policy: forbidden-until-bootloader-evidence
   DEVICE_DATA:
     placement: existing-vendor-partition-candidate
-    candidates: [factory, art, radio, tplink, config, tp-link-reserved]
+    candidates: [radio, tplink, config]
     write_policy: forbidden
     image_inclusion: forbidden
     migration: forbidden

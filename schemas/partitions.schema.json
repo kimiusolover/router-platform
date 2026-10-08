@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "router-platform.partitions/v1",
+  "type": "object",
+  "required": ["schema", "status", "media", "preserve", "replaceable", "partitions"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "router-platform.partitions/v1"
+    },
+    "status": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "string"
+    },
+    "media": {
+      "type": "object",
+      "required": ["type", "total_bytes"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "total_bytes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "preserve": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "replaceable": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "partitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/partition"
+      },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "partition": {
+      "type": "object",
+      "required": ["name", "offset", "size", "preservation"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "offset": {
+          "oneOf": [
+            { "type": "integer", "minimum": 0 },
+            { "type": "string", "pattern": "^0x[0-9a-fA-F]+$" }
+          ]
+        },
+        "size": {
+          "oneOf": [
+            { "type": "integer", "minimum": 1 },
+            { "type": "string", "pattern": "^0x[0-9a-fA-F]+$" }
+          ]
+        },
+        "preservation": {
+          "type": "string",
+          "enum": ["preserve", "replaceable"]
+        },
+        "nvmem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nvmem"
+          }
+        }
+      }
+    },
+    "nvmem": {
+      "type": "object",
+      "required": ["name", "offset", "length"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "offset": {
+          "oneOf": [
+            { "type": "integer", "minimum": 0 },
+            { "type": "string", "pattern": "^0x[0-9a-fA-F]+$" }
+          ]
+        },
+        "length": {
+          "oneOf": [
+            { "type": "integer", "minimum": 1 },
+            { "type": "string", "pattern": "^0x[0-9a-fA-F]+$" }
+          ]
+        }
+      }
+    }
+  }
+}

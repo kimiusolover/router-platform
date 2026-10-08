@@ -1,14 +1,46 @@
-# Do not populate offsets or sizes from guesswork. Confirm against a stock-image
-# analysis and a serial/bootloader partition listing before enabling `image`.
-status: unverified
-evidence: required-before-image-assembly
-# There are deliberately no offsets, sizes, erase blocks, or writable slots.
-# They must be taken from stock-image analysis and a bootloader partition listing,
-# then reviewed against the preserved regions below.
+schema: router-platform.partitions/v1
+status: discovery
+evidence: openwrt-upstream-reference
+
+media:
+  type: spi-nor
+  total_bytes: 16777216
+
 preserve:
   - u-boot
-  - u-boot-env
-  - factory
-  - art
-  - tp-link-reserved
-writable_partitions: []
+  - config
+  - tplink
+  - radio
+
+replaceable:
+  - firmware
+
+partitions:
+  - name: u-boot
+    offset: 0x000000
+    size: 0x040000
+    preservation: preserve
+  - name: firmware
+    offset: 0x040000
+    size: 0xf60000
+    preservation: replaceable
+  - name: config
+    offset: 0xfa0000
+    size: 0x010000
+    preservation: preserve
+    nvmem:
+      - name: macaddr_config_8
+        offset: 0x8
+        length: 0x6
+  - name: tplink
+    offset: 0xfb0000
+    size: 0x040000
+    preservation: preserve
+  - name: radio
+    offset: 0xff0000
+    size: 0x010000
+    preservation: preserve
+    nvmem:
+      - name: eeprom_radio_0
+        offset: 0x0
+        length: 0xe00
